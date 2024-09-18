@@ -1,14 +1,14 @@
-// In src/services/workoutServices.js
+// In src/services/workoutService.js
 
-const Workout = require('../database/Workout');
+const Workout = require("../database/Workout");
 
 const getAllWorkouts = async () => {
-    try
+    try 
     {
-        const allWorkouts = Workout.getAllWorkouts();
+        const allWorkouts = await Workout.getAllWorkouts(); // Añadir await aquí
         return allWorkouts;
-    }
-    catch(error)
+    } 
+    catch (error) 
     {
         throw error;
     }
@@ -16,4 +16,4 @@ const getAllWorkouts = async () => {
 
 module.exports = {
     getAllWorkouts
-}
+};

@@ -3,20 +3,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-const mongodbRoute = 'mongodb+srv://PinkiWinki:1fe46a07b13A1c1_*@polymorphs.fuwvu.mongodb.net/?retryWrites=true&w=majority&appName=Polymorphs';
+const mongodbRoute = 'mongodb+srv://PinkiWinki:1fe46a07b13A1c1_*@polymorphs.fuwvu.mongodb.net/E4P1?retryWrites=true&w=majority&appName=Polymorphs';
+
+
+// *** ADD ***
+const workoutRouter = require("./routes/workoutRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// *** ADD ***
-const workoutRouter = require("./routes/workoutRoutes");
+
 
 // Use bodyparser 
 
 app.use(bodyParser.json());
 
 // *** ADD ***
-app.use("/api/workouts", workoutRouter);
+app.use("/workouts", workoutRouter);
 
 async function start() {
     try

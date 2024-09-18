@@ -8,10 +8,15 @@ const mongodbRoute = 'mongodb+srv://PinkiWinki:1fe46a07b13A1c1_*@polymorphs.fuwv
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// *** ADD ***
+const workoutRouter = require("./routes/workoutRoutes");
 
 // Use bodyparser 
 
 app.use(bodyParser.json());
+
+// *** ADD ***
+app.use("/api/workouts", workoutRouter);
 
 async function start() {
     try

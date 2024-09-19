@@ -51,7 +51,50 @@ const getOneWorkout = async (req, res) => {
     }
 };
 
+const createdNewWorkout = async (req, res) => {
+    const { body } = req;
+    
+    if (
+        !body.name ||
+        !body.mode ||
+        !body.equipment
+    ) {
+        res
+        .status(400)
+        .send({
+            status: "FAILED",
+            data: {
+                error:
+                "One of the following keys is missing or is empty in request body:" +
+                "'name', 'mode', 'equipment'",
+            },
+        });
+        return;
+    }
+
+
+    const newWorkout = {
+        name: body.name,
+        mode: body.mode,
+        equipment: body.equipment
+    };
+
+    try {
+        const createdWorkout = await workoutService.createdNewWorkout(newWorkout);
+        res.status(201).send( { status: "OK", data: createdWorkout });
+    }
+    catch
+    {
+        res
+        .status(error?.status || 500)
+        .send({ status: "FAILED",
+                message: "Error al realizar la petición",
+                data: { error: error?.message || error }});
+    }
+};
+
 module.exports = {
     getAllWorkouts,
-    getOneWorkout
+    getOneWorkout,
+    createdNewWorkout
 }

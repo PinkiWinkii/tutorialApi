@@ -14,6 +14,19 @@ const getAllWorkouts = async () => {
     }
 };
 
+const getOneWorkout = async (workoutId) => {
+    try 
+    {
+        const workout = await Workout.getOneWorkout(workoutId); // Añadir await aquí
+        return workout;
+    } 
+    catch (error) 
+    {
+        throw error;
+    }
+};
+
 module.exports = {
-    getAllWorkouts
+    getAllWorkouts,
+    getOneWorkout
 };

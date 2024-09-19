@@ -36,8 +36,24 @@ const createNetWorkout = async (newWorkout) => {
     }
 }
 
+const updateOneWorkout = async (workoutId, changes) => {
+    try
+    {
+        let updatedWorkout = await Workout.findByIdAndUpdate(workoutId,
+        {$set:changes},{new:true});
+        console.log(updatedWorkout);
+        
+        return updatedWorkout;
+    }
+    catch (error)
+    {
+        throw error;
+    }
+}
+
 module.exports = {
     getAllWorkouts,
     getOneWorkout,
-    createNetWorkout
+    createNetWorkout,
+    updateOneWorkout
 };

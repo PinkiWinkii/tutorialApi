@@ -38,8 +38,21 @@ const createdNewWorkout = async (newWorkout) => {
     }
 };
 
+const updateOneWorkout = async (workoutId, changes) => {
+    try
+    {
+        const updatedWorkout = Workout.updateOneWorkout(workoutId, changes);
+        return updatedWorkout;
+    }
+    catch (error)
+    {
+        throw error;
+    }
+}
+
 module.exports = {
     getAllWorkouts,
     getOneWorkout,
-    createdNewWorkout
+    createdNewWorkout,
+    updateOneWorkout
 };

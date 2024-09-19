@@ -22,4 +22,19 @@ const verify = async (req, res, next) => {
     next();
 };
 
-module.exports = { verify };
+const verifyId = async (req, res, next) => {
+    const { workoutId } = req.params;
+    if (!workoutId) {
+        return res
+            .status(400)
+            .send({
+                status: "FAILED",
+                data: {
+                    error: "Parameter ':workoutId' can not be empty",
+                },
+            });
+    }
+    next();
+};
+
+module.exports = { verify, verifyId };
